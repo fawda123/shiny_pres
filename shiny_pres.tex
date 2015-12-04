@@ -88,12 +88,14 @@
 
 %%%%%%
 \begin{frame}{Who am I?}
-R user since 2007 \\~\\
-Maintainer of two packages on CRAN: \\~\\
+\begin{itemize}
+\item R user since 2007 \\~\\
+\item Maintainer of two packages on CRAN: \\~\\
+\end{itemize}
 \begin{columns}[T]
 \begin{column}{0.45\textwidth}
 \emtxt{SWMPr}\\~\\
-Tools for retrieving, organizing, and analyzing environmental data from the System Wide Monitoring Program of the National Estuarine Research Reserve System. 
+Tools for retrieving, organizing, and analyzing data from the System Wide Monitoring Program of the National Estuarine Research Reserve System. 
 \end{column}
 \begin{column}{0.45\textwidth}
 \emtxt{NeuralNetTools} \\~\\
@@ -150,7 +152,7 @@ Shiny is a web application framework for R \\~\\
 \begin{columns}
 \begin{column}{0.7\textwidth}
 \begin{itemize}
-\item From the command line to a user interface 
+\item From the command line to a graphical user interface 
 \item Make your code interactive 
 \item Do not need to know anything about web programming
 \item Integrated very well with R studio \\~\\
@@ -164,4 +166,136 @@ Shiny is a web application framework for R \\~\\
 Tools like Shiny improve \emtxt{accessibility} and \emtxt{communication} 
 \end{frame}
 
+%%%%%%
+\begin{frame}{Introduction to Shiny}
+A minimal working example...\\~\\
+\begin{center}
+\includegraphics<1>[width = 0.7\textwidth]{fig/mwe1.png}
+\includegraphics<2>[width = 0.7\textwidth]{fig/mwe2.png}
+\includegraphics<3>[width = 0.7\textwidth]{fig/mwe3.png}
+\includegraphics<4>[width = 0.7\textwidth]{fig/mwe4.png}
+\end{center}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+What's under the hood? Two files... \emtxt{server.R}\\~\\
+\centerline{\includegraphics[width = 0.65\textwidth]{fig/serverex.png}}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+What's under the hood? Two files... \emtxt{ui.R}\\~\\
+\centerline{\includegraphics[width = 0.65\textwidth]{fig/uiex.png}}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+The files contain only R code! \\~\\
+\begin{itemize}
+\item \emtxt{server.R}: Contains instructions to build the app, e.g., plots, functions, etc.\\~\\
+\item \emtxt{ui.R}: Controls the layout and appearance of the app, i.e., panel types, widgets, etc. \\~\\
+\end{itemize}
+Executing a Shiny app will run both scripts, user input to \emtxt{ui.R} sent to \emtxt{server.R}, output from \emtxt{server.R} sent to \emtxt{ui.R} for display
+\end{frame}
+
+%%%%%%
+\begin{frame}[t, fragile]{Introduction to Shiny}
+Step 1: User input to \emtxt{ui.R}, `bins'
+\small
+\begin{kframe}
+\begin{alltt}
+\hlkwd{sliderInput}\hlstd{(}\hlstr{"bins"}\hlstd{,}
+            \hlstr{"Number of bins:"}\hlstd{,}
+            \hlkwc{min} \hlstd{=} \hlnum{1}\hlstd{,}
+            \hlkwc{max} \hlstd{=} \hlnum{50}\hlstd{,}
+            \hlkwc{value} \hlstd{=} \hlnum{30}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\begin{center}
+\includegraphics[width = \textwidth]{fig/sliderinput.png}
+\end{center}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t, fragile]{Introduction to Shiny}
+Step 2: Input from \emtxt{ui.R} sent to \emtxt{server.R}, executed
+\small
+\begin{kframe}
+\begin{alltt}
+\hlcom{# generate bins based on input$bins from ui.R}
+\hlstd{x} \hlkwb{<-} \hlstd{faithful[,} \hlnum{2}\hlstd{]}
+\hlstd{bins} \hlkwb{<-} \hlkwd{seq}\hlstd{(}\hlkwd{min}\hlstd{(x),} \hlkwd{max}\hlstd{(x),} \hlkwc{length.out} \hlstd{= input}\hlopt{$}\hlstd{bins} \hlopt{+} \hlnum{1}\hlstd{)}
+
+\hlcom{# draw the histogram with the specified number of bins}
+\hlkwd{hist}\hlstd{(x,} \hlkwc{breaks} \hlstd{= bins,} \hlkwc{col} \hlstd{=} \hlstr{'darkgray'}\hlstd{,} \hlkwc{border} \hlstd{=} \hlstr{'white'}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\normalsize
+Step 3: Output from \emtxt{server.R} sent to \emtxt{ui.R}, plotted on app
+\small
+\begin{kframe}
+\begin{alltt}
+\hlkwd{plotOutput}\hlstd{(}\hlstr{"distPlot"}\hlstd{)}
+\end{alltt}
+\end{kframe}
+\normalsize
+Step 4: Rinse and repeat
+\end{frame}
+
+%%%%%%
+\begin{frame}{Introduction to Shiny}
+This style of programming and execution is \emtxt{reactive} - re-executes automaticallly when inputs change \\~\\
+This has tremendous value: \\~\\
+\begin{itemize}
+\item Quick code execution after initial setup \\~\\
+\item Ease of use for others given application infrastructure \\~\\
+\item Ease of use for the developer - no knowledge of web programming needed
+\end{itemize}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+Shiny applications are very flexible: \href{http://shiny.rstudio.com/gallery/widget-gallery.html}{widgets}
+\begin{center}
+\includegraphics[width = \textwidth]{fig/widgets.png}
+\end{center}
+\end{frame}
+
+%%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+Shiny applications are very flexible: outputs
+\begin{center}
+\includegraphics[width = \textwidth]{fig/outputs.png}
+\end{center}
+\end{frame}
+
+%%%%%
+\begin{frame}[t]{Introduction to Shiny}
+Shiny applications are very flexible: use of HTML or Javascipt libraries \\~\\
+\begin{itemize}
+\item Refined layouts: shinydashboard, \href{http://www.htmlwidgets.org/}{htmlwidgets}, \href{https://ebailey78.github.io/shinyBS/}{shinyBS} \\~\\
+\item Interacive graphics: dygraphs, metricsgraphics, \href{https://plot.ly/r/shiny-tutorial/}{plotly} \\~\\
+\item Mapping: \href{https://rstudio.github.io/leaflet/}{leaflet} \\~\\
+\end{itemize}
+Use of these libraries can create applications comparable to any other web application for data viz
+\end{frame}
+
+%%%%%%
+\begin{frame}[t, fragile]{Introduction to Shiny}
+Apps are easily shared: \href{http://www.shinyapps.io/}{http://www.shinyapps.io/} \\~\\
+Sign up for free account, push local shiny applications to a server, share URL
+\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(shinyapps)}
+\hlkwd{deployApp}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
+\end{frame}
+
+%%%%%%
+% types of ui, dashboard, htmlwidgets
+% deploying an app
+% examples
 \end{document}

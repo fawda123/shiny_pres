@@ -1,0 +1,10 @@
+\frametitle{Introduction to Shiny}
+Apps are easily shared: \href{http://www.shinyapps.io/}{http://www.shinyapps.io/} \\~\\
+Sign up for free account, push local shiny applications to a server, share URL
+\begin{kframe}
+\begin{alltt}
+\hlkwd{library}\hlstd{(shinyapps)}
+\hlkwd{deployApp}\hlstd{()}
+\end{alltt}
+\end{kframe}
+
