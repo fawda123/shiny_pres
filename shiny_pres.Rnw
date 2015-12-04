@@ -1,5 +1,13 @@
-\documentclass{beamer}
+\documentclass[serif]{beamer}
 \usetheme{EPA}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shadows,arrows,positioning}
+
+\newcommand{\emtxt}[1]{\textbf{\textit{#1}}}
+
+\tikzstyle{block} = [rectangle, draw, text width=7em, text centered, rounded corners, minimum height=3em, minimum width=7em, top color = white, bottom color=brown!30,  drop shadow]
 
 % knitr setup
 <<setup, include = F, cache = F>>=
@@ -10,11 +18,104 @@ options(replace.assign=T,width=90,digits=1)
 
 \begin{document}
 
-\begin{frame}{title}
+\title[Shiny Overview]{\textbf{An overview of Shiny applications using R and RStudio}\vspace{-0.15in}}
+\author[M. Beck]{Marcus W. Beck\inst{1}}
+
+\institute[USEPA]{\inst{1} USEPA National Health and Environmental Effects Research Laboratory, Gulf Ecology Division, \href{mailto:beck.marcus@epa.gov}{beck.marcus@epa.gov}}
+
+\date{Dec. 10, 2015}
+
+%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+
+%%%%%%
+\begin{frame}{Who am I?}
 \begin{itemize}
-\item 1
-\item 2
+\item ORISE post-doc for 2.5 years, fed postdoc since last week \\~\\
+\item NHEERL Gulf Ecology Division \\~\\
+\item Research focus on water quality assessment and indicator development \\~\\
+\item Specific interests in statistical modelling, data assimilation, graphics  \\~\\
 \end{itemize}
+\end{frame}
+
+%%%%%%
+\begin{frame}{Who am I?}
+R user since 2007 \\~\\
+Maintainer of two packages on CRAN: \\~\\
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\emtxt{SWMPr}\\~\\
+Tools for retrieving, organizing, and analyzing environmental data from the System Wide Monitoring Program of the National Estuarine Research Reserve System. 
+\end{column}
+\begin{column}{0.45\textwidth}
+\emtxt{NeuralNetTools} \\~\\
+Visualization and analysis tools to aid in the interpretation of neural network models
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%
+\begin{frame}{Reproducible research workflow}
+General workflow for \emtxt{reproducible research} - reproduce results from an experiment or analysis conducted by another.\\~\\
+From Wikipedia... `The ultimate product is the \emtxt{paper along with the full computational environment} used to produce the results in the paper such as the code, data, etc. that can be \emtxt{used to reproduce the results and create new work} based on the research.'\\~\\
+\begin{columns}
+\begin{column}{0.25\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/Rlogo.png}}
+\end{column}
+\begin{column}{0.25\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/RStudio.png}}
+\end{column}
+\begin{column}{0.25\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/knit-logo.png}}
+\end{column}
+\begin{column}{0.25\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/octocat.png}}
+\end{column}
+\end{columns}
+\end{frame}
+
+%%%%%%
+\begin{frame}{Reproducible research workflow}
+\begin{columns}
+\begin{column}{0.23\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/Rlogo.png}}
+\end{column}
+\begin{column}{0.23\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/RStudio.png}}
+\end{column}
+\begin{column}{0.23\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/knit-logo.png}}
+\end{column}
+\begin{column}{0.23\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/octocat.png}}
+\end{column}
+\end{columns}
+\vspace{0.2in}
+The use of these tools increases transparency and transfer of information \emtxt{= better science}\\~\\
+Data prep, analysis, report, and sharing can all be done in RStudio IDE
+\end{frame}
+
+%%%%%%
+\begin{frame}{Introduction to Shiny}
+Where does Shiny fit with reproducible research? \\~\\
+Shiny is a web application framework for R \\~\\
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\begin{itemize}
+\item From the command line to a user interface 
+\item Make your code interactive 
+\item Do not need to know anything about web programming
+\item Integrated very well with R studio \\~\\
+\end{itemize}
+\end{column}
+\begin{column}{0.2\textwidth}
+\centerline{\includegraphics[width = \textwidth]{fig/shiny_logo.png}}
+\end{column}
+\end{columns}
+\vspace{0.16in}
+Tools like Shiny improve \emtxt{accessibility} and \emtxt{communication} 
 \end{frame}
 
 \end{document}
