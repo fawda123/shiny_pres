@@ -1,0 +1,20 @@
+\documentclass{beamer}
+\usetheme{EPA}
+
+% knitr setup
+<<setup, include = F, cache = F>>=
+# set global chunk options
+opts_chunk$set(fig.path='fig/', fig.align='center', fig.show='hold',message=F,echo=F,results='asis',dev='pdf',dev.args=list(family='serif'),fig.pos='!ht',warning=F)
+options(replace.assign=T,width=90,digits=1)
+@
+
+\begin{document}
+
+\begin{frame}{title}
+\begin{itemize}
+\item 1
+\item 2
+\end{itemize}
+\end{frame}
+
+\end{document}
